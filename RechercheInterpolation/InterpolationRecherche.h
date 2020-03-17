@@ -1,0 +1,6 @@
+#ifndef INTERPOLATIONRECHERCHE_H_INCLUDED
+#define INTERPOLATIONRECHERCHE_H_INCLUDED
+
+int rechercheInterpolation(int, int [], int);
+
+#endif // INTERPOLATIONRECHERCHE_H_INCLUDED
