@@ -5,3 +5,5 @@ BAUER Nicolas
 CORNU Luc [LEAD]
 MOSCHLER Romain
 SEMIVOLOS Nicolas
+
+Faire une documentation générale + individuelle à chaques programmes
