@@ -1,48 +1,51 @@
 #include <stdio.h>
+void triFusion(int i, int j, int tab[], int tmp[]) {
+    if(j <= i){ return;}
 
+    int m = (i + j) / 2;
 
-void permuter(int *a, int *b) { //permute les valeurs du tableau
-    int tmp;
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
-void triRapide(int tab[], int first, int last) { //fonction principale
-    int pivot, i, j;
-    if(first < last) {
-        pivot = first; //on designe le premier élément comme le pivot
-        i = first;
-        j = last;
-        while (i < j) {
-            while(tab[i] <= tab[pivot] && i < last)
-                i++;
-            while(tab[j] > tab[pivot])
-                j--;
-            if(i < j) {
-                permuter(&tab[i], &tab[j]);
-            }
+    triFusion(i, m, tab, tmp);     //trier la moitié gauche
+    triFusion(m + 1, j, tab, tmp); //trier la moitié droite
+    int pg = i;
+    int pd = m + 1;
+    int c;          //compteur
+// on boucle de i à j pour remplir chaque élément du tableau final
+    for(c = i; c <= j; c++) {
+        if(pg == m + 1) { //le pointeur du sous-tableau de gauche a atteint la limite
+            tmp[c] = tab[pd];
+            pd++;
+        }else if (pd == j + 1) { //le pointeur du sous-tableau de droite a atteint la limite
+            tmp[c] = tab[pg];
+            pg++;
+        }else if (tab[pg] < tab[pd]) { //le pointeur du sous-tableau de gauche pointe vers un élément plus petit
+            tmp[c] = tab[pg];
+            pg++;
+        }else {  //le pointeur du sous-tableau de droite pointe vers un élément plus petit
+            tmp[c] = tab[pd];
+            pd++;
         }
-        permuter(&tab[pivot], &tab[j]);
-        triRapide(tab, first, j - 1);
-        triRapide(tab, j + 1, last);
+    }
+    for(c = i; c <= j; c++) {  //copier les éléments de tmp[] à tab[]
+        tab[c] = tmp[c];
     }
 }
 int main() {
-    int tab[100], nbr, i;
+  int  nbr, i, tab[100], tmp[100];
 
-    printf("\n Entrer le nombre total d'elements :  ");
-    scanf("%d", &nbr);
+  printf(" Entrez le nombre d'elements dans le tableau: ");
+  scanf("%d", &nbr);
 
-    printf("\n Entrer les elements du tableau  :  ");
-    for(i = 0; i < nbr; i++)
-        scanf("%d", &tab[i]);
+  printf(" Entrez %d entiers : ", nbr);
 
-    triRapide(tab, 0, nbr - 1);
+  for (i = 0; i < nbr; i++)
+    scanf("%d", &tab[i]);
 
-    printf("\n Tableau trie : ");
-    for(i = 0; i < nbr; i++)  {
-        printf(" %4d", tab[i]);
-    }
-    printf("\n");
-    return 0;
+  triFusion(0, nbr-1, tab, tmp);
+
+  printf("\n Tableau trie : ");
+  for(i = 0; i < nbr; i++)  {
+     printf(" %4d", tab[i]);
+  }
+  printf("\n");
+  return 0;
 }
