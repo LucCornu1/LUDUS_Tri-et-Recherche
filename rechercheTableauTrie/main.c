@@ -4,6 +4,22 @@
 
 #define TAILLE 10
 
+/*ALGORITHME :
+	fonction avec retour booléen testTrie1(entier tab[])
+		entier i;
+		booléen b;
+
+	début
+		b <- VRAI;
+		pour (i allant de 0 à tab.longueur-2 pas 1) faire
+			si (tab[i] > tab[i+1]) alors
+				b <- FAUX;
+			finsi
+		finpour
+		retourne b;
+	fin
+*/
+
 int main()
 {
 	int tab[TAILLE], tab2[TAILLE];
