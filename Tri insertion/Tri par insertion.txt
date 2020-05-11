@@ -1,0 +1,22 @@
+FONCTION : Tri par Insertion(tab : ENTIER)
+
+VAR
+
+	tmp : ENTIER 
+	cpt : ENTIER
+	i : ENTIER
+
+DEBUT
+
+	POUR i ALLANT DE 1 A taille(tab) -1 PAR PAS DE 1 FAIRE //PARCOURIR LE TABLEAU DEPUIS LE 2e ELEMENT DU TABLEAU
+		tmp <- tab[i]
+		cpt <- i
+
+		TANTQUE cpt > 0 ET tab[cpt -1] > tmp FAIRE //ECRASER L'ELEMENT EN QUESTION TANTQUE tab(cpt -1) EST SUPERIEUR A LA VALEUR TEMP
+			tab[cpt] <- tab[cpt -1]
+			cpt <- cpt -1
+		FINTANQUE
+
+		tab[cpt] <- tmp //ON REMPLACE LA NOUVELLE VALEUR DU tab(cpt) PAR LA VALEUR TEMP STOCKE
+	FINPOUR
+FIN

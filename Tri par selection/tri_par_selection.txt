@@ -1,0 +1,25 @@
+FONCTION TRI_PAR_SELECTION (tab : ENTIER)
+
+VAR
+
+	min, tmp : ENTIER
+
+DEBUT
+
+	POUR i ALLANT DE 0 A taille(tab)-2 PAS DE 1 FAIRE
+		min <- i
+
+		POUR j ALLANT DE i+1 A taille(tab)-1 PAS DE 1 FAIRE
+
+			SI(tab[j] < tab[min])ALORS
+				min <- j
+			FINSI
+		FINPOUR
+
+		SI(min <> i)ALORS
+			tmp <- tab[i]
+			tab[i] <- tab[min]
+			tab[min] <- tmp
+		FINSI
+	FINPOUR
+FIN
